@@ -251,7 +251,12 @@ namespace AssetStudio
                 catch (Exception) { }
                 reader.Position = 0;
             }
-
+            
+            if (reader.FileType == FileType.MhyFile && game.Type.IsZZZCB2())
+            {
+                reader.FileType = FileType.BlockFile;
+            }
+            
             Logger.Verbose("No preprocessing is needed");
             return reader;
         }
